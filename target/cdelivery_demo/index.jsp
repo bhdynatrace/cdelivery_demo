@@ -1,5 +1,5 @@
 <html>
 <body>
-<h2>Hello World!</h2>
+<h2>Dynatrace Continuous Delivery Demo</h2>
 </body>
 </html>
