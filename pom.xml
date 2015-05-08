@@ -7,6 +7,22 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>cdelivery_demo Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <properties>  
+	  <!-- Setting default values for Dynatrace Maven goals that operate on a system profile -->  
+	  <dynaTrace.username>admin</dynaTrace.username>  
+	  <dynaTrace.password>admin</dynaTrace.password>  
+	  <dynaTrace.serverUrl>http://dynatrace_server:8020</dynaTrace.serverUrl>  
+	  <dynaTrace.systemProfile>Monitoring</dynaTrace.systemProfile>   
+	  <!-- This property will be used to store the actual Session Name for e.g.: Start/Stop Recording -->  
+	  <dynaTrace.sessionNameProperty>dynaTrace.sessionName</dynaTrace.sessionNameProperty>   
+	  <!-- Following is a list of properties for goal: startRecording -->  
+	  <dynaTrace.sessionName>CDelivery Demo Session</dynaTrace.sessionName>  
+	  <dynaTrace.sessionDescription>Dynatrace Continuous Delivery Recorded Session</dynaTrace.sessionDescription>  
+	  <dynaTrace.recordingOption>all</dynaTrace.recordingOption> 
+	  <!-- other options: violations|timeseries -->  
+	  <dynaTrace.sessionLocked>false</dynaTrace.sessionLocked>  
+	  <dynaTrace.appendTimestamp>false</dynaTrace.appendTimestamp>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -29,6 +45,6 @@
   </scm>
   <ciManagement>
   	<system>Jenkins</system>
-  	<url>192.168.0.100:8081/jenkins</url>
+  	<url>dynatrace_server:8081/jenkins</url>
   </ciManagement>
 </project>
