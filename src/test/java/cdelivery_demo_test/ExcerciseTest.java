@@ -1,10 +1,9 @@
-package cdelivery_demo;
+package cdelivery_demo_test;
 
 import org.junit.Test;
 
 import junit.framework.TestCase;
-import cdelivery_demo.Excercise;	
-import junit.framework.TestCase;
+import cdelivery_demo.Excercise;
 
 public class ExcerciseTest extends TestCase {
 
