@@ -1,5 +1,8 @@
 package cdelivery_demo;
 
+import org.junit.Test;
+
+import junit.framework.TestCase;
 import cdelivery_demo.Excercise;	
 import junit.framework.TestCase;
 
@@ -14,6 +17,7 @@ public class ExcerciseTest extends TestCase {
 		super.tearDown();
 	}
 	
+	@Test
 	public void testExcercise()
 	{
 		Excercise ex = new Excercise();
