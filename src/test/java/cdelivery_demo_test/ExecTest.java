@@ -1,12 +1,12 @@
 package cdelivery_demo_test;
 
-import static org.junit.Assert.*;
+import cdelivery_demo.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import cdelivery_demo.Excercise;
+
 
 public class ExecTest {
 
