@@ -33,7 +33,7 @@
     <dependency>
     	<groupId>dynaTrace</groupId>
     	<artifactId>dtAutomation</artifactId>
-    	<version>6.1</version>
+    	<version>${dynaTrace.version}</version>
     </dependency>
   </dependencies>
   <build>
