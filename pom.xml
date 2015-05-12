@@ -30,6 +30,11 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    	<groupId>dynaTrace</groupId>
+    	<artifactId>dtAutomation</artifactId>
+    	<version>6.1</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>cdelivery_demo</finalName>
