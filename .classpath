@@ -36,6 +36,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/dynatrace/JUnit/junit-4.12.jar"/>
-	<classpathentry kind="lib" path="/home/dynatrace/maven_plugins/dtAutomation/6.1/dtAutomation.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
