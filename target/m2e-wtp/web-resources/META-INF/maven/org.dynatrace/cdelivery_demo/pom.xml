@@ -14,8 +14,9 @@
 	  <dynaTrace.agentGroup>Test</dynaTrace.agentGroup>
 	  <dynaTrace.profileName>Monitoring</dynaTrace.profileName>
 	  <dynaTrace.username>admin</dynaTrace.username>  
-	  <dynaTrace.password></dynaTrace.password>  
-	  <dynaTrace.serverUrl>http://dynatrace_server:8020</dynaTrace.serverUrl>    
+	  <dynaTrace.password>admin</dynaTrace.password>  
+	  <dynaTrace.serverUrl>http://dynatrace_server:8020</dynaTrace.serverUrl> 
+	  <dynaTrace.collector>dynatrace_server</dynaTrace.collector>   
 	  <!-- This property will be used to store the actual Session Name for e.g.: Start/Stop Recording -->  
 	  <dynaTrace.sessionNameProperty>dynaTrace.sessionName</dynaTrace.sessionNameProperty>   
 	  <!-- Following is a list of properties for goal: startRecording -->  
