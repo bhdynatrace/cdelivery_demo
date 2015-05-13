@@ -9,10 +9,13 @@
   <url>http://maven.apache.org</url>
   <properties>  
 	  <!-- Setting default values for Dynatrace Maven goals that operate on a system profile -->  
+	  <dynaTrace.version>6.1</dynaTrace.version>	
+	  <dynaTrace.testCategory>unit</dynaTrace.testCategory> 
+	  <dynaTrace.agentGroup>Test</dynaTrace.agentGroup>
+	  <dynaTrace.profileName>Monitoring</dynaTrace.profileName>
 	  <dynaTrace.username>admin</dynaTrace.username>  
-	  <dynaTrace.password>admin</dynaTrace.password>  
-	  <dynaTrace.serverUrl>http://dynatrace_server:8020</dynaTrace.serverUrl>  
-	  <dynaTrace.systemProfile>Monitoring</dynaTrace.systemProfile>   
+	  <dynaTrace.password></dynaTrace.password>  
+	  <dynaTrace.serverUrl>http://dynatrace_server:8020</dynaTrace.serverUrl>    
 	  <!-- This property will be used to store the actual Session Name for e.g.: Start/Stop Recording -->  
 	  <dynaTrace.sessionNameProperty>dynaTrace.sessionName</dynaTrace.sessionNameProperty>   
 	  <!-- Following is a list of properties for goal: startRecording -->  
@@ -38,6 +41,54 @@
   </dependencies>
   <build>
     <finalName>cdelivery_demo</finalName>
+    <pluginManagement>
+    <plugins>
+    	<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.17</version>
+            <configuration>
+                <!-- launch a new JVM for all tests -->
+                <forkMode>once</forkMode>
+ 
+                <!-- load the Java agent in the new JVM and also pass the test run id (dtTestrunID property) to the agent -->
+                <argLine>-agentpath:/opt/dynatrace/agent/lib64/libdtagent.so=name=MavenBuild,server=dynatrace_server,optionTestRunIdJava=${dtTestrunID}</argLine>
+            </configuration>
+    	</plugin>
+    	<plugin>
+            <groupId>dynaTrace</groupId>
+            <artifactId>dtAutomation</artifactId>
+            <version>${dynaTrace.version}</version>
+            <executions>
+                <execution>
+                    <id>DT_StartTest_UnitTest</id>
+                    <configuration>
+                        <!-- define the configuration properties 
+                             for this test run -->
+                        <versionMajor>1</versionMajor>
+                        <versionMinor>2</versionMinor>
+                        <versionRevision>3</versionRevision>
+                        <versionMilestone>5</versionMilestone>
+                        <versionBuild>${BUILD_ID}</versionBuild>
+                        <category>unit</category>
+                        <profileName>${dynaTrace.profileName}</profileName>
+                        <username>admin</username>
+                        <password>admin</password>
+                        <serverUrl>http://dynatrace_server:8020</serverUrl>
+                        <additionalProperties></additionalProperties>
+                    </configuration>
+                    <!-- start this test in the process-test-classes phase
+                         which is the one before the tests are executed -->
+                    <phase>process-test-classes</phase>
+                    <goals>
+                        <!-- call the startTest goal of the dT plugin -->
+                        <goal>startTest</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+        </plugins>
+        </pluginManagement>
   </build>
   <organization>
   	<name>Dynatrace</name>
