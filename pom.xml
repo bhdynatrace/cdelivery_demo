@@ -10,7 +10,7 @@
   <properties>  
 	  <!-- Setting default values for Dynatrace Maven goals that operate on a system profile -->  
 	  <dynaTrace.version>6.1</dynaTrace.version>	
-	  <dynaTrace.testCategory>unit</dynaTrace.testCategory> 
+	  <dynaTrace.testCategory>Unit</dynaTrace.testCategory> 
 	  <dynaTrace.agentGroup>Test</dynaTrace.agentGroup>
 	  <dynaTrace.profileName>Monitoring</dynaTrace.profileName>
 	  <dynaTrace.username>admin</dynaTrace.username>  
@@ -45,23 +45,33 @@
     <pluginManagement>
     <plugins>
     	<plugin>
-    		<groupId>org.apache.maven.plugins</groupId>
-    		<artifactId>maven-resources-plugin</artifactId>
-    		<version>2.4.3</version>
-    	</plugin>
-    	<plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
             <version>2.17</version>
             <configuration>
-                <!-- launch a new JVM for all tests -->
-                <forkMode>once</forkMode>
- 
-                <!-- load the Java agent in the new JVM and also pass the test run id (dtTestrunID property) to the agent -->
-                <argLine>-agentpath:/opt/dynatrace/agent/lib64/libdtagent.so=name=MavenBuild,server=dynatrace_server,optionTestRunIdJava=${dtTestrunID}</argLine>
+					<skip>true</skip>
             </configuration>
     	</plugin>
     	<plugin>
+    		<groupId>org.apache.maven.plugins</groupId>
+    		<artifactId>maven-failsafe-plugin</artifactId>
+    		<version>2.17</version>
+    		<configuration>
+    		    <!-- launch a new JVM for all tests -->
+                <forkMode>once</forkMode>
+                 <!-- load the Java agent in the new JVM and also pass the test run id (dtTestrunID property) to the agent -->
+                <argLine>-agentpath:/opt/dynatrace/agent/lib64/libdtagent.so=name=MavenBuild,server=dynatrace_server,optionTestRunIdJava=${dtTestrunID}</argLine>
+            </configuration>
+            <executions>
+            	<execution>
+            		<goals>
+            			<goal>integration-test</goal>
+            			<goal>verify</goal>
+            		</goals>
+            	</execution>
+            </executions>
+    	</plugin>
+    	<plugin>			
             <groupId>dynaTrace</groupId>
             <artifactId>dtAutomation</artifactId>
             <version>${dynaTrace.version}</version>
