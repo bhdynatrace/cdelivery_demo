@@ -81,7 +81,24 @@
             <goals>                       
              <goal>startTest</goal>                    
              </goals>                
-             </execution>            
+             </execution>    
+             <execution>                    
+    	    <id>DtSetTestInformation</id>                   
+    	  	<configuration>                        
+    	  	<!-- overwrite configuration properties if necessary -->  
+                       <versionBuild>${BUILD_ID}</versionBuild> 
+                       <profileName>maven</profileName>
+                              <username>${dynaTrace.username}</username>  
+                              <password>${dynaTrace.password}</password>  
+                       <serverUrl>${dynaTrace.serverUrl}</serverUrl>
+                       <additionalProperties></additionalProperties> 
+           	</configuration> 
+                                                             
+            <phase>pre-integration-test</phase>                    
+            <goals>                       
+             <goal>setTestInformation</goal>                    
+             </goals>                
+             </execution>          
            </executions>        
         </plugin>
         </plugins>
