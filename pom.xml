@@ -66,11 +66,11 @@
     	  	<configuration>                        
     	  	<!-- overwrite configuration properties if necessary -->
                        <versionMajor>1</versionMajor>                        
-                       <versionMinor>2</versionMinor>                        
-                       <versionRevision>3</versionRevision>                  
-                       <versionMilestone>5</versionMilestone>   
+                       <versionMinor>0</versionMinor>                        
+                       <versionRevision>0</versionRevision>                  
+                       <versionMilestone>1</versionMilestone>   
                        <versionBuild>${BUILD_ID}</versionBuild> 
-                       <profileName></profileName>
+                       <profileName>maven</profileName>
                               <username>${dynaTrace.username}</username>  
                               <password>${dynaTrace.password}</password>  
                        <serverUrl>${dynaTrace.serverUrl}</serverUrl>
