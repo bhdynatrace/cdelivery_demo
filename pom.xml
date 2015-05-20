@@ -39,11 +39,6 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-    	<groupId>dynaTrace</groupId>
-    	<artifactId>dtAutomation</artifactId>
-    	<version>${dynaTrace.version}</version>
-    </dependency>
   </dependencies>
   <build>
     <finalName>cdelivery_demo</finalName>
