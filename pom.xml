@@ -70,7 +70,7 @@
                        <versionRevision>3</versionRevision>                  
                        <versionMilestone>5</versionMilestone>   
                        <versionBuild>${BUILD_ID}</versionBuild> 
-                       <profileName>${dynaTrace.profileName}</profileName>
+                       <profileName></profileName>
                               <username>${dynaTrace.username}</username>  
                               <password>${dynaTrace.password}</password>  
                        <serverUrl>${dynaTrace.serverUrl}</serverUrl>
