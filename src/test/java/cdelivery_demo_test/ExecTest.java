@@ -17,16 +17,27 @@ public class ExecTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+	
 	@Test
-	public void testExcercise()
+	public void testDBFunctions()
 	{
 		Excercise ex = new Excercise();
 		
 		ex.RunDemoDBFunctions();
-		ex.RunDemoProblem1();
-		ex.RunDemoWebServiceCalls();
+	}
+	
+	@Test public void testProblem1()
+	{
+		Excercise ex = new Excercise();
 		
+		ex.RunDemoProblem1();
+	}
+	
+	@Test public void testWebServiceCalls()
+	{
+		Excercise ex = new Excercise();
+		
+		ex.RunDemoWebServiceCalls();
 	}
 
 }

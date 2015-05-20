@@ -60,57 +60,34 @@
  				<argLine>-agentpath:/opt/dynatrace/agent/lib64/libdtagent.so=name=MavenBuild,server=${dynaTrace.collector},optionTestRunIdJava=${dtTestrunID}</argLine>            
  			</configuration>
     	</plugin>
-    	<plugin>
-    		<groupId>org.apache.maven.plugins</groupId>
-    		<artifactId>maven-failsafe-plugin</artifactId>
-    		<version>2.17</version>
-    		<configuration>
-    		    <!-- launch a new JVM for all tests -->
-                <forkMode>once</forkMode>
-                 <!-- load the Java agent in the new JVM and also pass the test run id (dtTestrunID property) to the agent -->
-                <argLine>-agentpath:/opt/dynatrace/agent/lib64/libdtagent.so=name=MavenBuild,server=dynatrace_server,optionTestRunIdJava=${dtTestrunID}</argLine>
-            </configuration>
-            <executions>
-            	<execution>
-            		<goals>
-            			<goal>integration-test</goal>
-            			<goal>verify</goal>
-            		</goals>
-            	</execution>
-            </executions>
-    	</plugin>
-    	<plugin>			
-            <groupId>dynaTrace</groupId>
-            <artifactId>dtAutomation</artifactId>
-            <version>${dynaTrace.version}</version>
-            <executions>
-                <execution>
-                    <id>DT_StartTest_UnitTest</id>
-                    <configuration>
-                        <!-- define the configuration properties 
-                             for this test run -->
-                        <versionMajor>1</versionMajor>
-                        <versionMinor>2</versionMinor>
-                        <versionRevision>3</versionRevision>
-                        <versionMilestone>5</versionMilestone>
-                        
-                        <versionBuild>${BUILD_ID}</versionBuild>
-                        <category>unit</category>
-                        <profileName>${dynaTrace.profileName}</profileName>
-                        <username>admin</username>
-                        <password>admin</password>
-                        <serverUrl>http://dynatrace_server:8020</serverUrl>
-                        <additionalProperties></additionalProperties>
-                    </configuration>
-                    <!-- start this test in the process-test-classes phase
-                         which is the one before the tests are executed -->
-                    <phase>process-test-classes</phase>
-                    <goals>
-                        <!-- call the startTest goal of the dT plugin -->
-                        <goal>startTest</goal>
-                    </goals>
-                </execution>
-            </executions>
+    	      
+    	 <plugin>            
+    	 <groupId>dynaTrace</groupId>            
+    	 <artifactId>dtAutomation</artifactId>            
+    	 <version>${dynaTrace.version}</version>            
+    	 <executions>                
+    	 <execution>                    
+    	 <id>DT_StartTest_IntegrationTest</id>                   
+    	  	<configuration>                        
+    	  	<!-- overwrite configuration properties if necessary -->
+                       <versionMajor>1</versionMajor>                        
+                       <versionMinor>2</versionMinor>                        
+                       <versionRevision>3</versionRevision>                  
+                       <versionMilestone>5</versionMilestone>   
+                       <versionBuild>${BUILD_ID}</versionBuild> 
+                       <profileName>${dynaTrace.profileName}</profileName>
+                              <username>${dynaTrace.username}</username>  
+                              <password>${dynaTrace.password}</password>  
+                       <serverUrl>${dynaTrace.serverUrl}</serverUrl>
+                       <additionalProperties></additionalProperties> 
+           	</configuration> 
+                                                             
+            <phase>pre-integration-test</phase>                    
+            <goals>                       
+             <goal>startTest</goal>                    
+             </goals>                
+             </execution>            
+           </executions>        
         </plugin>
         </plugins>
         </pluginManagement>
