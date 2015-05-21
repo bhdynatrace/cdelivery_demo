@@ -8,37 +8,52 @@
   <name>cdelivery_demo Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>  
-	  <!-- Setting default values for Dynatrace Maven goals that operate on a system profile -->  
-	  <dynaTrace.version>6.1</dynaTrace.version>	
-	  <dynaTrace.testCategory>Unit</dynaTrace.testCategory> 
-	  <dynaTrace.agentGroup>Test</dynaTrace.agentGroup>
-	  <dynaTrace.profileName>maven</dynaTrace.profileName>
+  	  <!-- Set the version of Dynatrace we are working with -->
+	  <dynaTrace.version>6.1</dynaTrace.version>
+	  
+	  <!-- Setting default values for Dynatrace Maven goals that operate on a system profile -->
 	  <dynaTrace.username>admin</dynaTrace.username>  
 	  <dynaTrace.password>admin</dynaTrace.password>  
-	  <dynaTrace.serverUrl>http://dynatrace_server:8020</dynaTrace.serverUrl> 
+	  <dynaTrace.serverUrl>http://dynatrace_server:8020</dynaTrace.serverUrl>
+	  <dynaTrace.profileName>maven</dynaTrace.profileName>
 	  <dynaTrace.collector>dynatrace_server</dynaTrace.collector>
-	  <dynaTrace.versionBuild>${BUILD_ID}</dynaTrace.versionBuild>   
+	  <dynaTrace.versionBuild>${BUILD_ID}</dynaTrace.versionBuild>
+	  
+	  <!-- Establish what category we plan on testing, environmentally aware -->
+	  <dynaTrace.testCategory>unit</dynaTrace.testCategory>
+	  
+	  <!-- goal properties for dtAutomation: startRecording -->
+	  <dynatrace.sessionName>Stored Testting Session</dynatrace.sessionName>
+	  <dynatrace.sessionDescription>Testing Session for Performance Analysis</dynatrace.sessionDescription>
+	  <dynatrace.recordingOption>all</dynatrace.recordingOption>
+	  <dynatrace.sessionLocked>false</dynatrace.sessionLocked> <!-- Let's keep the testing sessions deletable -->
+	  <dynatrace.appendTimestamp>false</dynatrace.appendTimestamp>
+	  
+	  <!-- goal properties for dtAutomation: stopRecording -->
+	  <dynatrace.doReanalyzeSession>true</dynatrace.doReanalyzeSession>
+	  <dynatrace.reanalyzeSessionTimeout>60000</dynatrace.reanalyzeSessionTimeout>
+	  <dynatrace.reanalyzeSessionPollingInterval>5000</dynatrace.reanalyzeSessionPollingInterval>
+	  <dynatrace.reanalyzeStatusProperty>dynatrace.status</dynatrace.reanalyzeStatusProperty>   
+	  
 	  <!-- This property will be used to store the actual Session Name for e.g.: Start/Stop Recording -->  
 	  <dynaTrace.sessionNameProperty>dynaTrace.sessionName</dynaTrace.sessionNameProperty>   
-	  <!-- Following is a list of properties for goal: startRecording -->  
-	  <dynaTrace.sessionName>CDelivery Demo Session</dynaTrace.sessionName>  
-	  <dynaTrace.sessionDescription>Dynatrace Continuous Delivery Recorded Session</dynaTrace.sessionDescription>  
-	  <dynaTrace.recordingOption>all</dynaTrace.recordingOption> 
-	  <!-- other options: violations|timeseries -->  
-	  <dynaTrace.sessionLocked>false</dynaTrace.sessionLocked>  
-	  <dynaTrace.appendTimestamp>false</dynaTrace.appendTimestamp>
   </properties>
   <profiles>
-  	<profile>
-  		<id>default</id>
-  	</profile>
+  	<profile><id>development</id></profile>
+  	<profile><id>stage</id></profile>
+  	<profile><id>production</id></profile>
   </profiles>
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
+      	<groupId>junit</groupId>
+      	<artifactId>junit</artifactId>
+      	<version>4.12</version>
+      	<scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>dynaTrace</groupId>
+    	<artifactId>dtAutomation</artifactId>
+    	<version>${dynaTrace.version}</version>
     </dependency>
   </dependencies>
   <build>
@@ -51,55 +66,41 @@
             <version>2.17</version>
             <configuration>               
              <!-- launch a new JVM for all tests -->
-               <forkMode>once</forkMode>                 
+                <forkMode>once</forkMode> 
+                                
  			<!-- load the Java agent in the new JVM and also pass the test run id (dtTestrunID property) to the agent -->                
  				<argLine>-agentpath:/opt/dynatrace/agent/lib64/libdtagent.so=name=MavenBuild,server=${dynaTrace.collector},optionTestRunIdJava=${dtTestrunID}</argLine>            
  			</configuration>
     	</plugin>
     	      
     	 <plugin>            
-    	 <groupId>dynaTrace</groupId>            
-    	 <artifactId>dtAutomation</artifactId>            
-    	 <version>${dynaTrace.version}</version>            
-    	 <executions>                
-    	 <execution>                    
-    	 <id>DT_StartTest_IntegrationTest</id>                   
-    	  	<configuration>                        
-    	  	<!-- overwrite configuration properties if necessary -->
-                       <versionMajor>1</versionMajor>                        
-                       <versionMinor>0</versionMinor>                        
-                       <versionRevision>0</versionRevision>                  
-                       <versionMilestone>1</versionMilestone>   
-                       <versionBuild>${BUILD_ID}</versionBuild> 
-                       <profileName>maven</profileName>
+    	 	<groupId>dynaTrace</groupId>            
+    	 	<artifactId>dtAutomation</artifactId>            
+    	 	<version>${dynaTrace.version}</version>
+    	 	            
+    	 	<executions>                
+    	 		<execution>                    
+    	 		<id>DT_StartTest_IntegrationTest</id>                   
+    	  		<configuration>                        
+    	  				<!-- overwrite configuration properties if necessary -->
+                       	<versionMajor>1</versionMajor>                        
+                       	<versionMinor>0</versionMinor>                        
+                       	<versionRevision>0</versionRevision>                  
+                       	<versionMilestone>1</versionMilestone>   
+                       	<versionBuild>${BUILD_ID}</versionBuild> 
+                       	<category>unit</category>
+                       	<profileName>maven</profileName>
                               <username>${dynaTrace.username}</username>  
                               <password>${dynaTrace.password}</password>  
-                       <serverUrl>${dynaTrace.serverUrl}</serverUrl>
-                       <additionalProperties></additionalProperties> 
-           	</configuration> 
+                       	<serverUrl>${dynaTrace.serverUrl}</serverUrl>
+                       	<additionalProperties></additionalProperties> 
+           		</configuration> 
                                                              
-            <phase>pre-integration-test</phase>                    
-            <goals>                       
-             <goal>startTest</goal>                    
-             </goals>                
-             </execution>    
-             <execution>                    
-    	    <id>DtSetTestInformation</id>                   
-    	  	<configuration>                        
-    	  	<!-- overwrite configuration properties if necessary -->  
-                       <versionBuild>${BUILD_ID}</versionBuild> 
-                       <profileName>maven</profileName>
-                              <username>${dynaTrace.username}</username>  
-                              <password>${dynaTrace.password}</password>  
-                       <serverUrl>${dynaTrace.serverUrl}</serverUrl>
-                       <additionalProperties></additionalProperties> 
-           	</configuration> 
-                                                             
-            <phase>pre-integration-test</phase>                    
-            <goals>                       
-             <goal>setTestInformation</goal>                    
-             </goals>                
-             </execution>          
+            	<phase>process-test-classes</phase>                    
+            	<goals>                       
+	             	<goal>startTest</goal>                    
+    	        </goals>                
+        	    </execution>             
            </executions>        
         </plugin>
         </plugins>
