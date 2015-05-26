@@ -15,9 +15,10 @@
 	  <dynaTrace.username>admin</dynaTrace.username>  
 	  <dynaTrace.password>admin</dynaTrace.password>  
 	  <dynaTrace.serverUrl>http://dynatrace_server:8020</dynaTrace.serverUrl>
-	  <dynaTrace.profileName>maven</dynaTrace.profileName>
+	  <dynaTrace.profileName>stage</dynaTrace.profileName>
 	  <dynaTrace.collector>dynatrace_server</dynaTrace.collector>
 	  <dynaTrace.versionBuild>${BUILD_ID}</dynaTrace.versionBuild>
+	  <dynaTrace.systemProfile>maven</dynaTrace.systemProfile>
 	  
 	  <!-- Establish what category we plan on testing, environmentally aware -->
 	  <dynaTrace.testCategory>unit</dynaTrace.testCategory>
