@@ -76,7 +76,7 @@
     	 	            
     	 	<executions>                
     	 		<execution>                    
-    	 		<id>DT_StartTest_IntegrationTest</id>                   
+    	 		<id>DT_StartTest_UnitTest</id>                   
     	  		<configuration>                        
     	  				<!-- overwrite configuration properties if necessary -->
                        	<versionMajor>1</versionMajor>                        
@@ -92,7 +92,7 @@
                        	<additionalProperties></additionalProperties> 
            		</configuration> 
                                                              
-            	<phase>verify</phase>                    
+            	<phase>process-test-classes</phase>                    
             	<goals>                       
 	             	<goal>startTest</goal>                    
     	        </goals>                
