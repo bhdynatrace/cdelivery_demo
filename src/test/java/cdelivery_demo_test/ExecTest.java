@@ -5,8 +5,7 @@ import cdelivery_demo.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-
+import static org.junit.Assert.fail;
 
 public class ExecTest {
 
@@ -23,7 +22,12 @@ public class ExecTest {
 	{
 		Excercise ex = new Excercise();
 		
-		ex.RunDemoDBFunctions();
+		try {
+			ex.RunDemoDBFunctions();
+		}
+		catch(Exception e) {
+			fail("DemoDBFunctions Exception");
+		}
 	}
 	
 	@Test public void testProblem1()
