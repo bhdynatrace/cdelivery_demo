@@ -65,7 +65,7 @@
                 <forkMode>once</forkMode> 
                                 
  			<!-- load the Java agent in the new JVM and also pass the test run id (dtTestrunID property) to the agent -->                
- 				<argLine>-agentpath:/opt/dynatrace/agent/lib64/libdtagent.so=name=MavenBuild,server=${dynaTrace.collector},optionTestRunIdJava=${dtTestrunID}</argLine>            
+ 				<argLine>-agentpath:/opt/dynatrace/agent/lib64/libdtagent.so=name=MavenBuild,server=${dynaTrace.collector},optionTestRunIdJava=${BUILD_ID}</argLine>            
  			</configuration>
     	</plugin>
     	      
@@ -113,6 +113,6 @@
   </scm>
   <ciManagement>
   	<system>Jenkins</system>
-  	<url>dynatrace_server:8081/jenkins</url>
+  	<url>dynatrace_server:8050</url>
   </ciManagement>
 </project>
