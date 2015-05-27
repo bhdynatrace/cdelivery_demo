@@ -1,8 +1,7 @@
 package cdelivery_demo;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+
 
 public class Excercise {
 
@@ -10,20 +9,30 @@ public class Excercise {
 	{
 		// This code will be for RunDemo
 		Connection conn = null;
-/*
+
 		try {
 		    conn =
-		       DriverManager.getConnection("jdbc:mysql://localhost/cdelivery_demo_db?" +
+		       DriverManager.getConnection("jdbc:mysql://localhost:3306/cdelivery_demo_db?" +
 		                                   "user=root&password=!dynatrace");
 
 		    // Do something with the Connection
+		    Statement stmt = conn.createStatement();
+		    ResultSet rs;
+		    
+		    rs = stmt.executeQuery("SELECT * FROM demo_table");
+		    while( rs.next() )
+		    {
+		    String fullname = rs.getString("Name");
+		  	System.out.println(fullname); 
+		    }
+		    conn.close();
 		    
 		} catch (SQLException ex) {
 		    // handle any errors
 		    System.out.println("SQLException: " + ex.getMessage());
 		    System.out.println("SQLState: " + ex.getSQLState());
 		    System.out.println("VendorError: " + ex.getErrorCode());
-		}  */
+		}  
 	}
 	
 	public void RunDemoWebServiceCalls()
