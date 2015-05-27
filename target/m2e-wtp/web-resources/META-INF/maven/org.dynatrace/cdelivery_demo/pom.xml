@@ -92,7 +92,7 @@
                        	<additionalProperties></additionalProperties> 
            		</configuration> 
                                                              
-            	<phase>process-test-classes</phase>                    
+            	<phase>verify</phase>                    
             	<goals>                       
 	             	<goal>startTest</goal>                    
     	        </goals>                
