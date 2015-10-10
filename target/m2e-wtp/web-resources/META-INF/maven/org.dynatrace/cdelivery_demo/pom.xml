@@ -9,22 +9,22 @@
   <url>http://maven.apache.org</url>
   <properties>  
   	  <!-- Set the version of Dynatrace we are working with -->
-	  <dynaTrace.version>6.1</dynaTrace.version>
+	  <dynaTrace.version>6.2</dynaTrace.version>
 	  
 	  <!-- Setting default values for Dynatrace Maven goals that operate on a system profile -->
 	  <dynaTrace.username>admin</dynaTrace.username>  
 	  <dynaTrace.password>admin</dynaTrace.password>  
 	  <dynaTrace.serverUrl>http://dynatrace_server:8020</dynaTrace.serverUrl>
-	  <dynaTrace.profileName>stage</dynaTrace.profileName>
+	  <dynaTrace.profileName>Monitoring</dynaTrace.profileName>
 	  <dynaTrace.collector>dynatrace_server</dynaTrace.collector>
 	  <dynaTrace.versionBuild>${BUILD_ID}</dynaTrace.versionBuild>
-	  <dynaTrace.systemProfile>maven</dynaTrace.systemProfile>
+	  <dynaTrace.systemProfile>Monitoring</dynaTrace.systemProfile>
 	  
 	  <!-- Establish what category we plan on testing, environmentally aware -->
 	  <dynaTrace.testCategory>unit</dynaTrace.testCategory>
 	  
 	  <!-- goal properties for dtAutomation: startRecording -->
-	  <dynatrace.sessionName>Stored Testting Session</dynatrace.sessionName>
+	  <dynatrace.sessionName>Stored Testing Session</dynatrace.sessionName>
 	  <dynatrace.sessionDescription>Testing Session for Performance Analysis</dynatrace.sessionDescription>
 	  <dynatrace.recordingOption>all</dynatrace.recordingOption>
 	  <dynatrace.sessionLocked>false</dynatrace.sessionLocked> <!-- Let's keep the testing sessions deletable -->
@@ -54,7 +54,7 @@
     <dependency>
       	<groupId>mysql</groupId>
       	<artifactId>mysql-connector-java</artifactId>
-      	<version>5.1.6</version>
+      	<version>5.1.36</version>
     </dependency>
   </dependencies>
   <build>
@@ -90,7 +90,7 @@
                        	<versionMilestone>1</versionMilestone>   
                        	<versionBuild>${BUILD_ID}</versionBuild> 
                        	<category>unit</category>
-                       	<profileName>maven</profileName>
+                       	<profileName>Monitoring</profileName>
                               <username>${dynaTrace.username}</username>  
                               <password>${dynaTrace.password}</password>  
                        	<serverUrl>${dynaTrace.serverUrl}</serverUrl>
@@ -113,8 +113,8 @@
   </organization>
   <scm>
   	<url>https://github.com/bhdynatrace/cdelivery_demo</url>
-  	<connection>scm:git:git@github.com:bhdynatrace/cdelivery_demo.git</connection>
-  	<developerConnection>scm:git:git@github.com:bhdynatrace/cdelivery_demo.git</developerConnection>
+  	<connection>scm:bhdynatrace:!Dynatrace1@github.com:bhdynatrace/cdelivery_demo.git</connection>
+  	<developerConnection>scm:bhdynatrace:!Dynatrace1@github.com:bhdynatrace/cdelivery_demo.git</developerConnection>
   </scm>
   <ciManagement>
   	<system>Jenkins</system>
