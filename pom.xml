@@ -39,6 +39,29 @@
 	  <!-- This property will be used to store the actual Session Name for e.g.: Start/Stop Recording -->  
 	  <dynaTrace.sessionNameProperty>dynaTrace.sessionName</dynaTrace.sessionNameProperty>   
   </properties>
+  
+  <pluginRepositories> 
+  <pluginRepository>
+   	<id>sonatype-nexus-snapshots</id> 
+   	<name>Sonatype Nexus Snapshots</name> 
+   	<url>https://repository.sonatype.org/content/groups/public/</url> 
+   
+   	<snapshots> <enabled>true</enabled> </snapshots> 
+   </pluginRepository> 
+   </pluginRepositories> 
+  
+   <repositories> 
+   		<repository> 
+   		<id>sonatype-nexus-snapshots</id> 
+   		<name>Sonatype Nexus Snapshots</name> 
+   		<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    	<releases><enabled>false</enabled></releases> 
+    	<snapshots> 
+    	<enabled>true</enabled> 
+    	</snapshots> 
+    </repository> 
+  </repositories>
+  
   <profiles>
     <profile>
             <id>sonar</id>
