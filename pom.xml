@@ -143,6 +143,6 @@
   </scm>
   <ciManagement>
   	<system>Jenkins</system>
-  	<url>dynatrace_server:8050</url>
+  	<url>dynatrace_server:8080</url>
   </ciManagement>
 </project>
