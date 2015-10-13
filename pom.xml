@@ -14,9 +14,9 @@
 	  <!-- Setting default values for Dynatrace Maven goals that operate on a system profile -->
 	  <dynaTrace.username>admin</dynaTrace.username>  
 	  <dynaTrace.password>admin</dynaTrace.password>  
-	  <dynaTrace.serverUrl>http://dynatrace_server:8020</dynaTrace.serverUrl>
+	  <dynaTrace.serverUrl>http://localhost:8020</dynaTrace.serverUrl>
 	  <dynaTrace.profileName>Monitoring</dynaTrace.profileName>
-	  <dynaTrace.collector>dynatrace_server</dynaTrace.collector>
+	  <dynaTrace.collector>localhost</dynaTrace.collector>
 	  <dynaTrace.versionBuild>${BUILD_ID}</dynaTrace.versionBuild>
 	  <dynaTrace.systemProfile>Monitoring</dynaTrace.systemProfile>
 	  
