@@ -33,5 +33,6 @@
             	myExec.RunDemoWebServiceCalls();
             }
             // --> 
+        </SCRIPT>
       </body>
 </html>
