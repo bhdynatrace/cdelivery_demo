@@ -10,8 +10,8 @@
 			<INPUT TYPE="BUTTON" VALUE="Run Demo Web Services" ONCLICK="button3()">   
         </FORM>
 
-        <SCRIPT LANGUAGE="JavaScript">
-            <!--
+        <SCRIPT>
+            
             function button1()
             {
             	Excercise myExec;
@@ -32,7 +32,7 @@
             	Excercise myExec;
             	myExec.RunDemoWebServiceCalls();
             }
-            // --> 
+             
         </SCRIPT>
       </body>
 </html>
