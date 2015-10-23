@@ -13,7 +13,7 @@ public class Excercise {
 		try {
 		    conn =
 		       DriverManager.getConnection("jdbc:mysql://localhost:3306/cdelivery_demo_db?" +
-		                                   "user=root&password=!dynatrace");
+		                                   "user=root&password=!Dynatrace");
 
 		    // Do something with the Connection
 		    Statement stmt = conn.createStatement();

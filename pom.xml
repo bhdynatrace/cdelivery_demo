@@ -15,8 +15,8 @@
 	  <dynaTrace.username>admin</dynaTrace.username>  
 	  <dynaTrace.password>admin</dynaTrace.password>  
 	  <dynaTrace.serverUrl>http://localhost:8020</dynaTrace.serverUrl>
-	  <dynaTrace.profileName>Monitoring</dynaTrace.profileName>
-	  <dynaTrace.collector>localhost</dynaTrace.collector>
+	  <dynaTrace.profileName>monitor_cdelivery_demo</dynaTrace.profileName>
+	  <dynaTrace.collector>devserver</dynaTrace.collector>
 	  <dynaTrace.versionBuild>${BUILD_ID}</dynaTrace.versionBuild>
 	  <dynaTrace.systemProfile>Monitoring</dynaTrace.systemProfile>
 	  
@@ -78,14 +78,14 @@
             <properties>
                 <!-- Example for MySQL-->
                 <sonar.jdbc.url>
-                  jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8
+                  jdbc:mysql://devserver:3306/sonar?useUnicode=true&amp;characterEncoding=utf8
                 </sonar.jdbc.url>
                 <sonar.jdbc.username>sonar</sonar.jdbc.username>
                 <sonar.jdbc.password>sonar</sonar.jdbc.password>
  
                 <!-- Optional URL to server. Default value is http://localhost:9000 -->
                 <sonar.host.url>
-                  http://localhost:9000
+                  http://devserver:9000
                 </sonar.host.url>
             </properties>
     </profile>
@@ -125,7 +125,7 @@
                 <forkMode>once</forkMode> 
                                 
  			<!-- load the Java agent in the new JVM and also pass the test run id (dtTestrunID property) to the agent -->                
- 				<argLine>-agentpath:/opt/dynatrace/agent/lib64/libdtagent.so=name=MavenBuild,server=${dynaTrace.collector},optionTestRunIdJava=${BUILD_ID}</argLine>            
+ 				<argLine>-agentpath:/opt/dynatrace/agent/lib64/libdtagent.so=name=demo_app,server=${dynaTrace.collector},optionTestRunIdJava=${BUILD_ID}</argLine>            
  			</configuration>
     	</plugin>
     	      
